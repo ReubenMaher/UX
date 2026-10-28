@@ -136,6 +136,8 @@ label{display:inline-flex;gap:5px;align-items:center;color:var(--mute);font-size
 .navigation-links-area{display:flex;flex:1;justify-content:center;min-width:0}
 .navigation-links{display:flex;flex:0 0 auto;align-items:center;gap:32px;white-space:nowrap}
 .navigation-link{font:400 14px/20px var(--bf);color:#020304}
+.navigation[data-layout=grid] .navigation-links{width:100%;min-width:0;flex:1;gap:0}
+.navigation[data-layout=grid] .navigation-link{display:-webkit-box;flex:1 1 0;min-width:0;overflow:hidden;text-align:center;white-space:normal;-webkit-box-orient:vertical;-webkit-line-clamp:2}
 .navigation-actions{display:flex;flex:0 0 auto;align-items:center;gap:8px}
 .navigation .navigation-primary,.navigation .navigation-menu-toggle{min-width:44px;min-height:44px;padding:0 16px;border:0;border-radius:8px;background:#006cff;color:#fdfdff;font:600 14px/20px var(--bf);white-space:nowrap}
 .navigation .navigation-primary{display:grid;place-items:center}
@@ -324,7 +326,7 @@ function render(){
   $('#vp').style.width=W+'px';
   $('#vp').innerHTML=`${nav}<div class="comp ${pri?'':'sec'}" style="min-height:${h}px;background:${bgc}">${inner}</div><div class="rest" style="flex:1">Rest of the page</div>${grid}`;
   const navRoot=$('.navigation'),navArea=$('.navigation-links-area'),navList=$('.navigation-links');
-  const menuActive=navList.scrollWidth>navArea.clientWidth+1;
+  const menuActive=S.nav.layout==='adaptive'&&navList.scrollWidth>navArea.clientWidth+1;
   navRoot.classList.toggle('is-menu',menuActive);
   if(!menuActive)S.nav.menuOpen=false;
   $('#nav-menu').hidden=!menuActive||!S.nav.menuOpen;
