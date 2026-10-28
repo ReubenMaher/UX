@@ -139,6 +139,7 @@ label{display:inline-flex;gap:5px;align-items:center;color:var(--mute);font-size
 .navigation-actions{display:flex;flex:0 0 auto;align-items:center;gap:8px}
 .navigation .navigation-primary,.navigation .navigation-menu-toggle{min-width:44px;min-height:44px;padding:0 16px;border:0;border-radius:8px;background:#006cff;color:#fdfdff;font:600 14px/20px var(--bf);white-space:nowrap}
 .navigation .navigation-primary{display:grid;place-items:center}
+.navigation .navigation-secondary{display:grid;place-items:center;min-width:44px;min-height:44px;padding:0 16px;border:0;border-radius:8px;background:#e5f0ff;color:#0056cc;font:600 14px/20px var(--bf);white-space:nowrap}
 .navigation .navigation-menu-toggle{display:grid;width:44px;padding:0;background:transparent;color:#020304;visibility:hidden}
 .navigation.is-menu .navigation-menu-toggle{visibility:visible}
 .navigation-menu-icon,.navigation-menu-icon::before,.navigation-menu-icon::after{display:block;width:20px;height:2px;background:currentColor}
@@ -242,6 +243,13 @@ label{display:inline-flex;gap:5px;align-items:center;color:var(--mute);font-size
       <h2 class="group-title" id="navigation-items-title">Navigation items</h2>
       <div class="nav-items-editor" id="nav-items-editor"></div>
     </section>
+    <section class="group" aria-labelledby="navigation-actions-title">
+      <h2 class="group-title" id="navigation-actions-title">Buttons</h2>
+      <div class="nav-control-fields">
+        <label class="nav-check"><input type="checkbox" id="nav-primary-visible" checked> Show primary button</label>
+        <label class="nav-check"><input type="checkbox" id="nav-secondary-visible"> Show secondary button</label>
+      </div>
+    </section>
   </div>
   <div class="info" id="info"></div>
 </div>
@@ -255,7 +263,7 @@ const SB=svg('#9fb6cc','#e7edf3','#6f879d'),SS=svg('#cfd9c9','#f2efe4','#8aa08a'
 const VS={primary:[{n:'Inset image: full width',h:600,k:'full'},{n:'Inset image: bg image',h:712,k:'inset'},{n:'Bg image: overlay',h:600,k:'ov'}],secondary:[{n:'Bg image',h:400,k:'bg'},{n:'Full width',h:400,k:'fw'}]};
 const LB={eyebrow:'Eyebrow',lead:'Leading title',title:'Title',sub:'Subheading',desc:'Description',b1:'Primary button',b2:'Secondary button',foot:'Footnote'};
 const DEFAULT_TEXT={eyebrow:'Eyebrow',lead:'Leading title',title:'Title',sub:'Subheading',desc:'Description',b1:'Label',b2:'Label',foot:'Footnote'};
-const S={W:1280,g:'primary',v:0,bg:SB,side:SS,grid:false,ov:true,tcol:'auto',showSide:true,ts:'hero',show:{eyebrow:1,lead:1,title:1,sub:1,desc:1,b1:1,b2:1,foot:1},T:{...DEFAULT_TEXT},nav:{layout:'grid',logo:'assets/navigation-logo.png',showLogo:true,brandLabel:'alpha1-proteinase inhibitor (human)',showBrandLabel:true,menuOpen:false,items:[{label:'Nav Label 1',visible:true},{label:'Nav Label 2',visible:true},{label:'Nav Label 3',visible:true},{label:'Nav Label 4',visible:true},{label:'Nav Label 5',visible:true}]}};
+const S={W:1280,g:'primary',v:0,bg:SB,side:SS,grid:false,ov:true,tcol:'auto',showSide:true,ts:'hero',show:{eyebrow:1,lead:1,title:1,sub:1,desc:1,b1:1,b2:1,foot:1},T:{...DEFAULT_TEXT},nav:{layout:'grid',logo:'assets/navigation-logo.png',showLogo:true,brandLabel:'alpha1-proteinase inhibitor (human)',showBrandLabel:true,showPrimary:true,showSecondary:false,menuOpen:false,items:[{label:'Nav Label 1',visible:true},{label:'Nav Label 2',visible:true},{label:'Nav Label 3',visible:true},{label:'Nav Label 4',visible:true},{label:'Nav Label 5',visible:true}]}};
 const esc=s=>s.replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
 const escAttr=s=>esc(String(s)).replace(/"/g,'&quot;').replace(/'/g,'&#39;');
 let sc=1;
@@ -302,7 +310,7 @@ function render(){
     <div class="navigation-inner" style="height:${navH}px;padding-inline:${navPadding}px">
       <div class="navigation-brand">${S.nav.showLogo?`<img class="navigation-logo" src="${escAttr(S.nav.logo)}" alt="Navigation logo">`:''}${S.nav.showBrandLabel?`<span class="navigation-brand-label" contenteditable data-nav-brand>${esc(S.nav.brandLabel)}</span>`:''}</div>
       <div class="navigation-links-area"><nav class="navigation-links" aria-label="Primary navigation">${navLinks}</nav></div>
-      <div class="navigation-actions"><button class="navigation-primary" type="button">Primary</button><button class="navigation-menu-toggle" id="nav-menu-toggle" type="button" aria-label="Open navigation menu" aria-expanded="${S.nav.menuOpen}"><span class="navigation-menu-icon" aria-hidden="true"></span></button></div>
+      <div class="navigation-actions">${S.nav.showSecondary?'<button class="navigation-secondary" type="button">Secondary</button>':''}${S.nav.showPrimary?'<button class="navigation-primary" type="button">Primary</button>':''}<button class="navigation-menu-toggle" id="nav-menu-toggle" type="button" aria-label="Open navigation menu" aria-expanded="${S.nav.menuOpen}"><span class="navigation-menu-icon" aria-hidden="true"></span></button></div>
     </div>
     <div class="navigation-menu" id="nav-menu" ${S.nav.menuOpen?'':'hidden'}>${navMenu}</div>
   </div>`;
@@ -370,6 +378,8 @@ $('#nav-logo-upload').onchange=e=>{
 $('#nav-logo-visible').onchange=e=>{S.nav.showLogo=e.target.checked;render()};
 $('#nav-brand-label').oninput=e=>{S.nav.brandLabel=e.target.value;render()};
 $('#nav-brand-visible').onchange=e=>{S.nav.showBrandLabel=e.target.checked;render()};
+$('#nav-primary-visible').onchange=e=>{S.nav.showPrimary=e.target.checked;render()};
+$('#nav-secondary-visible').onchange=e=>{S.nav.showSecondary=e.target.checked;render()};
 $('#nav-items-editor').oninput=e=>{
   const i=Number(e.target.dataset.navLabel);
   if(Number.isInteger(i)&&S.nav.items[i]){S.nav.items[i].label=e.target.value;render()}
