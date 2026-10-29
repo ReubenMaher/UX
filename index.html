@@ -17,35 +17,35 @@ html{scroll-padding-top:env(safe-area-inset-top,0px)}
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.45 ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}
 .app-shell{display:grid;grid-template-columns:320px minmax(0,1fr);min-height:100vh;transition:grid-template-columns .22s ease}
-.bar{position:sticky;top:0;z-index:20;align-self:start;height:100vh;overflow:auto;background:var(--sf);border-right:1px solid var(--line);padding:16px 12px;display:flex;flex-direction:column;gap:12px;box-shadow:4px 0 16px rgba(18,28,42,.06);transition:padding .22s ease}
+.bar{position:sticky;top:0;z-index:20;align-self:start;height:100vh;overflow:auto;background:var(--sf);border-right:1px solid var(--line);padding:16px 12px;display:flex;flex-direction:column;gap:14px;box-shadow:4px 0 16px rgba(18,28,42,.06);transition:padding .22s ease}
 #controls-panel{display:flex;flex:1;min-height:0;flex-direction:column}
-.sidebar-head{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:0 2px 10px;border-bottom:1px solid var(--line)}
+.sidebar-head{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:0 2px 12px;border-bottom:1px solid var(--line)}
 .sidebar-title{margin:0;color:var(--ink);font-size:var(--text-title);font-weight:700;line-height:1.3;white-space:nowrap}
 .sidebar-toggle{width:36px;min-width:36px;padding:0;display:grid;place-items:center}
 .sidebar-toggle-icon{width:9px;height:9px;border-top:2px solid currentColor;border-right:2px solid currentColor;transform:rotate(-135deg);transition:transform .2s ease}
 .sidebar-collapsed{grid-template-columns:64px minmax(0,1fr)}
 .sidebar-collapsed .bar{padding:16px 8px}
 .sidebar-collapsed .sidebar-head{justify-content:center;padding-inline:0}
-.sidebar-collapsed .sidebar-title,.sidebar-collapsed .controls,.sidebar-collapsed #info{display:none}
+.sidebar-collapsed .sidebar-title,.sidebar-collapsed .controls,.sidebar-collapsed .viewport-controls,.sidebar-collapsed #info{display:none}
 .sidebar-collapsed .sidebar-toggle-icon{transform:rotate(45deg)}
 .controls{display:grid;grid-template-columns:minmax(0,1fr);gap:10px}
 .controls[hidden]{display:none}
-.editor-tabs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:4px;padding:4px;border:1px solid var(--line);border-radius:8px;background:var(--bg)}
-.editor-tabs button{min-width:0;border:0;background:transparent;color:var(--mute);font-size:var(--text-option);font-weight:600}
+#controls-panel{gap:12px}
+.editor-tabs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:4px;padding:4px;border:1px solid var(--line);border-radius:10px;background:#edf0f4}
+.editor-tabs button{min-width:0;min-height:38px;border:0;background:transparent;color:var(--mute);font-size:var(--text-option);font-weight:600}
 .editor-tabs button[aria-selected=true]{background:var(--sf);color:var(--ink);box-shadow:0 1px 3px rgba(18,28,42,.12)}
 #info{margin-top:auto;padding-top:14px}
-.group{min-width:0;border:1px solid var(--line);border-radius:10px;background:var(--bg);padding:10px 12px}
-.group--layout{grid-column:auto}
-.group--layout{border:0;border-radius:0;background:transparent;padding:10px 0}
-.group-title{margin:0 0 8px;color:var(--ink);font-size:var(--text-section);font-weight:700;letter-spacing:.08em;text-transform:uppercase}
+.group{min-width:0;border:1px solid #e3e7ed;border-radius:10px;background:#fff;padding:12px}
+.group-title{margin:0 0 10px;color:var(--ink);font-size:.9rem;font-weight:600;letter-spacing:0;text-transform:none}
 .r{display:flex;flex-wrap:wrap;gap:8px 12px;align-items:center}
 .r+.r{margin-top:8px}
-.layout-controls{display:grid;gap:16px}
+.layout-controls{display:grid;gap:12px}
 .seg.header-type,.seg.breakpoint-options{display:grid;width:100%;grid-template-columns:repeat(2,minmax(0,1fr))}
 .header-type button{white-space:nowrap}
+.header-type{display:grid;width:100%;grid-template-columns:repeat(2,minmax(0,1fr))}
 .layout-field{display:grid;gap:4px;color:var(--mute);font-size:var(--text-label);font-weight:600}
 .layout-field select{width:100%;min-width:0}
-.layout-width{display:flex;align-items:center;gap:8px;color:var(--mute);font-size:var(--text-label);font-weight:600}
+.layout-width{display:flex;align-items:center;gap:8px;color:var(--ink);font-size:var(--text-option);font-weight:600}
 .layout-width input[type=number]{margin-left:auto}
 .breakpoint-field{display:grid;gap:5px}
 .seg.breakpoint-options{grid-template-columns:repeat(3,minmax(0,1fr))}
@@ -63,30 +63,38 @@ body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.45 ui-sans-serif
 .content-toggles input{flex:none;accent-color:var(--ac)}
 .image-controls{display:grid;gap:16px}
 .image-uploads{display:grid;grid-template-columns:minmax(0,1fr);gap:16px}
-.image-field{display:grid;align-content:start;gap:8px;min-width:0;padding:10px;border:1px solid var(--line);border-radius:6px;background:var(--sf);color:var(--mute);font-size:var(--text-option);font-weight:500}
+.image-field{display:grid;align-content:start;gap:8px;min-width:0;padding:10px;border:1px solid #e3e7ed;border-radius:8px;background:#fff;color:var(--ink);font-size:var(--text-option);font-weight:600}
 .image-field input[type=file]{width:100%;min-width:0;font-size:var(--text-meta);font-weight:400}
 .reset-actions{display:flex;justify-content:flex-end}
 .text-link{min-height:auto;padding:2px 0;border:0;background:transparent;color:var(--ac);font-size:var(--text-option);font-weight:600;text-decoration:underline;text-underline-offset:2px}
 .text-link:hover{background:transparent;color:var(--brand)}
 .image-controls #rs{width:100%}
 .nav-controls{gap:10px}
-.nav-layout-options{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));width:100%}
-.nav-layout-options button{font-size:var(--text-option);font-weight:600}
+.nav-layout-options{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;width:100%;border:0;overflow:visible}
+.nav-layout-options button{display:grid;align-content:start;gap:4px;min-width:0;min-height:70px;padding:10px;border:1px solid #e3e7ed;border-radius:8px;background:#fff;color:var(--ink);text-align:left;font-size:var(--text-option);font-weight:600}
+.nav-layout-options button[aria-pressed=true]{border-color:var(--ac);background:#f2f6fc;color:var(--ink);box-shadow:inset 0 0 0 1px var(--ac)}
+.nav-layout-options button span{color:var(--mute);font-size:var(--text-meta);font-weight:400;line-height:1.35}
 .nav-control-fields{display:grid;gap:12px}
-.nav-control-fields>label,.nav-item-label{display:grid;gap:5px;color:var(--mute);font-size:var(--text-label);font-weight:600}
+.nav-control-fields>label:not(.nav-check),.nav-item-label{display:grid;gap:5px;color:var(--mute);font-size:var(--text-label);font-weight:600}
 .nav-control-fields input[type=text],.nav-item-label input[type=text]{width:100%;min-width:0;cursor:text}
-.nav-check{display:flex;align-items:center;gap:7px;min-height:30px;color:var(--mute);font-size:var(--text-option);font-weight:500}
-.nav-check input{accent-color:var(--ac)}
+.nav-check{display:flex!important;flex-direction:row;align-items:center;justify-content:space-between;gap:10px;min-height:38px;color:var(--ink);font-size:var(--text-option);font-weight:500}
+.nav-check input,.nav-item-row>label input[type=checkbox]{appearance:none;position:relative;flex:0 0 auto;width:34px;height:20px;margin:0;border:0;border-radius:999px;background:#d8dde5;cursor:pointer;transition:background .16s ease}
+.nav-check input::after,.nav-item-row>label input[type=checkbox]::after{position:absolute;top:2px;left:2px;width:16px;height:16px;border-radius:50%;background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.18);content:"";transition:transform .16s ease}
+.nav-check input:checked,.nav-item-row>label input[type=checkbox]:checked{background:var(--ac)}
+.nav-check input:checked::after,.nav-item-row>label input[type=checkbox]:checked::after{transform:translateX(14px)}
+.nav-check input:focus-visible,.nav-item-row>label input[type=checkbox]:focus-visible{outline:2px solid var(--ac);outline-offset:2px}
 .nav-items-editor{display:grid;gap:10px}
 .nav-item-row{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:8px}
-.nav-item-row>label{display:flex;align-items:center;gap:5px;color:var(--mute);font-size:var(--text-meta);white-space:nowrap}
-.nav-item-row input[type=checkbox]{accent-color:var(--ac)}
+.nav-item-row>.nav-item-label{display:grid;align-items:start;gap:5px;color:var(--ink);font-size:var(--text-option);white-space:normal}
+.nav-item-row>label{display:flex;align-items:center;gap:8px;color:var(--mute);font-size:var(--text-meta);white-space:nowrap}
+.nav-item-row>label input[type=checkbox]{width:30px;height:18px}
+.nav-item-row>label input[type=checkbox]::after{width:14px;height:14px}
+.nav-item-row>label input[type=checkbox]:checked::after{transform:translateX(12px)}
 .group details summary{display:flex;align-items:center;gap:8px;min-height:24px;color:var(--ink);font-size:var(--text-heading);font-weight:600;line-height:1.3;cursor:pointer;list-style:none}
 .group details summary::-webkit-details-marker{display:none}
 .group details summary::before{content:"+";display:grid;place-items:center;width:18px;height:18px;border:1px solid var(--line);border-radius:5px;color:var(--mute);font-size:14px;line-height:1}
 .group details[open] summary::before{content:"−"}
 .group details[open] .group-content{padding-top:10px}
-.group-hint{margin-left:auto;color:var(--mute);font-size:var(--text-meta);font-weight:400}
 .seg{display:inline-flex;border:1px solid var(--line);border-radius:6px;overflow:hidden}
 .seg button{border:0;border-radius:0}
 button,select,input[type=number]{font:inherit;color:var(--ink);background:var(--sf);border:1px solid var(--line);border-radius:6px;padding:5px 10px;min-height:34px;cursor:pointer}
@@ -102,10 +110,10 @@ label{display:inline-flex;gap:5px;align-items:center;color:var(--mute);font-size
   .app-shell,.sidebar-collapsed{grid-template-columns:0 minmax(0,1fr)}
   .bar,.sidebar-collapsed .bar{position:fixed;left:0;top:env(safe-area-inset-top,0px);bottom:0;width:min(88vw,320px);height:auto;padding:12px;transform:translateX(0);transition:transform .22s ease}
   .sidebar-collapsed .bar{width:64px;padding:12px 8px;transform:translateX(0)}
-  .sidebar-collapsed .sidebar-title,.sidebar-collapsed .controls,.sidebar-collapsed #info{display:none}
+  .sidebar-collapsed .sidebar-title,.sidebar-collapsed .controls,.sidebar-collapsed .viewport-controls,.sidebar-collapsed #info{display:none}
   #stage{grid-column:2;min-width:0;padding:24px 16px 40px}
 }
-@media(max-width:600px){.group-hint{font-size:.68rem}.r{gap:8px}}
+@media(max-width:600px){.r{gap:8px}}
 #stage{min-width:0;padding:28px 24px 40px}
 #wrap{position:relative;margin:0 auto}
 #vp{display:flex;flex-direction:column;transform-origin:top left;box-shadow:0 0 0 1px var(--line);background:#fff;position:relative;overflow:hidden}
@@ -136,9 +144,12 @@ label{display:inline-flex;gap:5px;align-items:center;color:var(--mute);font-size
 .navigation-links-area{display:flex;flex:1;justify-content:center;min-width:0}
 .navigation-links{display:flex;flex:0 0 auto;align-items:center;gap:32px;white-space:nowrap}
 .navigation-link{font:400 14px/20px var(--bf);color:#020304}
+.navigation[data-layout=grid] .navigation-links{width:100%;min-width:0;flex:1;gap:0}
+.navigation[data-layout=grid] .navigation-link{display:-webkit-box;flex:1 1 0;min-width:0;overflow:hidden;text-align:center;white-space:normal;-webkit-box-orient:vertical;-webkit-line-clamp:2}
 .navigation-actions{display:flex;flex:0 0 auto;align-items:center;gap:8px}
 .navigation .navigation-primary,.navigation .navigation-menu-toggle{min-width:44px;min-height:44px;padding:0 16px;border:0;border-radius:8px;background:#006cff;color:#fdfdff;font:600 14px/20px var(--bf);white-space:nowrap}
 .navigation .navigation-primary{display:grid;place-items:center}
+.navigation .navigation-secondary{display:grid;place-items:center;min-width:44px;min-height:44px;padding:0 16px;border:0;border-radius:8px;background:#e5f0ff;color:#0056cc;font:600 14px/20px var(--bf);white-space:nowrap}
 .navigation .navigation-menu-toggle{display:grid;width:44px;padding:0;background:transparent;color:#020304;visibility:hidden}
 .navigation.is-menu .navigation-menu-toggle{visibility:visible}
 .navigation-menu-icon,.navigation-menu-icon::before,.navigation-menu-icon::after{display:block;width:20px;height:2px;background:currentColor}
@@ -160,26 +171,31 @@ label{display:inline-flex;gap:5px;align-items:center;color:var(--mute);font-size
     <button class="sidebar-toggle" id="sidebar-toggle" type="button" aria-label="Minimise controls" aria-expanded="true" aria-controls="controls-panel" title="Minimise controls"><span class="sidebar-toggle-icon" aria-hidden="true"></span></button>
   </div>
   <div id="controls-panel">
+  <section class="group viewport-controls" aria-labelledby="viewport-title">
+    <h2 class="group-title" id="viewport-title">Viewport</h2>
+    <div class="layout-controls">
+      <label class="layout-width">Viewport width <input id="w" type="number" min="1008" max="2560" step="1"> px</label>
+      <div class="breakpoint-field">
+        <span class="info">Breakpoints</span>
+        <div class="seg breakpoint-options" role="group" aria-label="Breakpoints"><button data-w="1024">Small</button><button data-w="1280">Medium</button><button data-w="1920">XL</button></div>
+      </div>
+    </div>
+  </section>
   <div class="editor-tabs" role="tablist" aria-label="Editor sections">
     <button id="header-tab" type="button" role="tab" aria-selected="true" aria-controls="header-controls">Header</button>
     <button id="navigation-tab" type="button" role="tab" aria-selected="false" aria-controls="navigation-controls" tabindex="-1">Navigation</button>
   </div>
   <div class="controls" id="header-controls" role="tabpanel" aria-labelledby="header-tab">
-    <section class="group group--layout" aria-labelledby="layout-title">
-      <h2 class="group-title" id="layout-title">Header &amp; viewport</h2>
+    <section class="group header-settings" aria-labelledby="layout-title">
+      <h2 class="group-title" id="layout-title">Header</h2>
       <div class="layout-controls">
         <div class="seg header-type" role="group" aria-label="Header type"><button id="gp" aria-pressed="true">Primary</button><button id="gs" aria-pressed="false">Secondary</button></div>
         <label class="layout-field">Variant <select id="vs"></select></label>
-        <label class="layout-width">Viewport width <input id="w" type="number" min="1008" max="2560" step="1"> px</label>
-        <div class="breakpoint-field">
-          <span class="info">Breakpoints</span>
-          <div class="seg breakpoint-options" role="group" aria-label="Breakpoints"><button data-w="1024">Small</button><button data-w="1280">Medium</button><button data-w="1920">XL</button></div>
-        </div>
       </div>
     </section>
     <section class="group group--appearance">
       <details>
-        <summary>Appearance <span class="group-hint">Grid, overlay, text and title</span></summary>
+        <summary>Appearance</summary>
         <div class="group-content">
           <div class="r appearance-toggles">
             <label><input type="checkbox" id="grid"> Grid</label>
@@ -207,7 +223,7 @@ label{display:inline-flex;gap:5px;align-items:center;color:var(--mute);font-size
     </section>
     <section class="group">
       <details>
-        <summary>Images <span class="group-hint">Upload or restore samples</span></summary>
+        <summary>Images</summary>
         <div class="group-content">
           <div class="image-controls">
             <div class="image-uploads">
@@ -221,26 +237,32 @@ label{display:inline-flex;gap:5px;align-items:center;color:var(--mute);font-size
     <div class="reset-actions"><button class="text-link" id="reset-all" type="button">Reset all</button></div>
   </div>
   <div class="controls nav-controls" id="navigation-controls" role="tabpanel" aria-labelledby="navigation-tab" hidden>
-    <section class="group group--layout" aria-labelledby="navigation-layout-title">
+    <section class="group" aria-labelledby="navigation-layout-title">
       <h2 class="group-title" id="navigation-layout-title">Navigation layout</h2>
       <div class="seg nav-layout-options" role="group" aria-label="Navigation layout">
-        <button type="button" data-nav-layout="grid" aria-pressed="true">Grid</button>
-        <button type="button" data-nav-layout="adaptive" aria-pressed="false">Adaptive</button>
+        <button type="button" data-nav-layout="grid" aria-pressed="true">Grid<span>Centered, evenly spaced links</span></button>
+        <button type="button" data-nav-layout="adaptive" aria-pressed="false">Adaptive<span>Switches to a menu when links don’t fit</span></button>
       </div>
-      <p class="info">Grid follows the header columns. Adaptive scales its side spacing and switches to a menu when links no longer fit.</p>
     </section>
     <section class="group" aria-labelledby="navigation-logo-title">
       <h2 class="group-title" id="navigation-logo-title">Logo</h2>
       <div class="nav-control-fields">
         <label class="image-field">Logo image <input type="file" id="nav-logo-upload" accept="image/*"></label>
-        <label class="nav-check"><input type="checkbox" id="nav-logo-visible" checked> Show logo image</label>
+        <label class="nav-check"><span>Show logo image</span><input type="checkbox" id="nav-logo-visible" checked></label>
         <label>Generic logo text <input type="text" id="nav-brand-label" value="alpha1-proteinase inhibitor (human)"></label>
-        <label class="nav-check"><input type="checkbox" id="nav-brand-visible" checked> Show generic text</label>
+        <label class="nav-check"><span>Show generic text</span><input type="checkbox" id="nav-brand-visible" checked></label>
       </div>
     </section>
     <section class="group" aria-labelledby="navigation-items-title">
       <h2 class="group-title" id="navigation-items-title">Navigation items</h2>
       <div class="nav-items-editor" id="nav-items-editor"></div>
+    </section>
+    <section class="group" aria-labelledby="navigation-actions-title">
+      <h2 class="group-title" id="navigation-actions-title">Buttons</h2>
+      <div class="nav-control-fields">
+        <label class="nav-check"><span>Primary button</span><input type="checkbox" id="nav-primary-visible" checked></label>
+        <label class="nav-check"><span>Secondary button</span><input type="checkbox" id="nav-secondary-visible"></label>
+      </div>
     </section>
   </div>
   <div class="info" id="info"></div>
@@ -255,7 +277,7 @@ const SB=svg('#9fb6cc','#e7edf3','#6f879d'),SS=svg('#cfd9c9','#f2efe4','#8aa08a'
 const VS={primary:[{n:'Inset image: full width',h:600,k:'full'},{n:'Inset image: bg image',h:712,k:'inset'},{n:'Bg image: overlay',h:600,k:'ov'}],secondary:[{n:'Bg image',h:400,k:'bg'},{n:'Full width',h:400,k:'fw'}]};
 const LB={eyebrow:'Eyebrow',lead:'Leading title',title:'Title',sub:'Subheading',desc:'Description',b1:'Primary button',b2:'Secondary button',foot:'Footnote'};
 const DEFAULT_TEXT={eyebrow:'Eyebrow',lead:'Leading title',title:'Title',sub:'Subheading',desc:'Description',b1:'Label',b2:'Label',foot:'Footnote'};
-const S={W:1280,g:'primary',v:0,bg:SB,side:SS,grid:false,ov:true,tcol:'auto',showSide:true,ts:'hero',show:{eyebrow:1,lead:1,title:1,sub:1,desc:1,b1:1,b2:1,foot:1},T:{...DEFAULT_TEXT},nav:{layout:'grid',logo:'assets/navigation-logo.png',showLogo:true,brandLabel:'alpha1-proteinase inhibitor (human)',showBrandLabel:true,menuOpen:false,items:[{label:'Nav Label 1',visible:true},{label:'Nav Label 2',visible:true},{label:'Nav Label 3',visible:true},{label:'Nav Label 4',visible:true},{label:'Nav Label 5',visible:true}]}};
+const S={W:1280,g:'primary',v:0,bg:SB,side:SS,grid:false,ov:true,tcol:'auto',showSide:true,ts:'hero',show:{eyebrow:1,lead:1,title:1,sub:1,desc:1,b1:1,b2:1,foot:1},T:{...DEFAULT_TEXT},nav:{layout:'grid',logo:'assets/navigation-logo.png',showLogo:true,brandLabel:'alpha1-proteinase inhibitor (human)',showBrandLabel:true,showPrimary:true,showSecondary:false,menuOpen:false,items:[{label:'Nav Label 1',visible:true},{label:'Nav Label 2',visible:true},{label:'Nav Label 3',visible:true},{label:'Nav Label 4',visible:true},{label:'Nav Label 5',visible:true}]}};
 const esc=s=>s.replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
 const escAttr=s=>esc(String(s)).replace(/"/g,'&quot;').replace(/'/g,'&#39;');
 let sc=1;
@@ -302,7 +324,7 @@ function render(){
     <div class="navigation-inner" style="height:${navH}px;padding-inline:${navPadding}px">
       <div class="navigation-brand">${S.nav.showLogo?`<img class="navigation-logo" src="${escAttr(S.nav.logo)}" alt="Navigation logo">`:''}${S.nav.showBrandLabel?`<span class="navigation-brand-label" contenteditable data-nav-brand>${esc(S.nav.brandLabel)}</span>`:''}</div>
       <div class="navigation-links-area"><nav class="navigation-links" aria-label="Primary navigation">${navLinks}</nav></div>
-      <div class="navigation-actions"><button class="navigation-primary" type="button">Primary</button><button class="navigation-menu-toggle" id="nav-menu-toggle" type="button" aria-label="Open navigation menu" aria-expanded="${S.nav.menuOpen}"><span class="navigation-menu-icon" aria-hidden="true"></span></button></div>
+      <div class="navigation-actions">${S.nav.showSecondary?'<button class="navigation-secondary" type="button">Secondary</button>':''}${S.nav.showPrimary?'<button class="navigation-primary" type="button">Primary</button>':''}<button class="navigation-menu-toggle" id="nav-menu-toggle" type="button" aria-label="Open navigation menu" aria-expanded="${S.nav.menuOpen}"><span class="navigation-menu-icon" aria-hidden="true"></span></button></div>
     </div>
     <div class="navigation-menu" id="nav-menu" ${S.nav.menuOpen?'':'hidden'}>${navMenu}</div>
   </div>`;
@@ -316,7 +338,7 @@ function render(){
   $('#vp').style.width=W+'px';
   $('#vp').innerHTML=`${nav}<div class="comp ${pri?'':'sec'}" style="min-height:${h}px;background:${bgc}">${inner}</div><div class="rest" style="flex:1">Rest of the page</div>${grid}`;
   const navRoot=$('.navigation'),navArea=$('.navigation-links-area'),navList=$('.navigation-links');
-  const menuActive=navList.scrollWidth>navArea.clientWidth+1;
+  const menuActive=S.nav.layout==='adaptive'&&navList.scrollWidth>navArea.clientWidth+1;
   navRoot.classList.toggle('is-menu',menuActive);
   if(!menuActive)S.nav.menuOpen=false;
   $('#nav-menu').hidden=!menuActive||!S.nav.menuOpen;
@@ -329,10 +351,10 @@ function render(){
   if(document.activeElement!==$('#w'))$('#w').value=Math.round(W);
   document.querySelectorAll('[data-w]').forEach(b=>b.setAttribute('aria-pressed',(+b.dataset.w>=1800?'xl':+b.dataset.w>=1280?'md':'sm')===bp));
   document.querySelectorAll('[data-nav-layout]').forEach(b=>b.setAttribute('aria-pressed',b.dataset.navLayout===S.nav.layout));
-  $('#info').textContent=`${Math.round(W)} × 1024 viewport · ${{sm:'Small desktop',md:'Medium desktop',xl:'Extra large desktop'}[bp]} · 12 columns of ${col.toFixed(1)}px, 24px gutters, ${bp==='md'?'64px margins, columns stretch':'centred '+C+'px grid'} · navigation ${S.nav.layout}${menuActive?' · menu shown':''} · component height ${h}px fixed · zoom ${Math.round(sc*100)}%`;
+  $('#info').textContent=`${Math.round(W)}px · ${{sm:'Small',md:'Medium',xl:'XL'}[bp]} · 12 columns · ${S.nav.layout} nav${menuActive?' menu':''} · ${h}px header · ${Math.round(sc*100)}% zoom`;
 }
 function fillVs(){$('#vs').innerHTML=VS[S.g].map((x,i)=>`<option value="${i}">${x.n}</option>`).join('');$('#vs').value=S.v}
-$('#nav-items-editor').innerHTML=S.nav.items.map((item,i)=>`<div class="nav-item-row"><label class="nav-item-label">Item ${i+1}<input type="text" data-nav-label="${i}" value="${escAttr(item.label)}"></label><label><input type="checkbox" data-nav-show="${i}" ${item.visible?'checked':''}> Show</label></div>`).join('');
+$('#nav-items-editor').innerHTML=S.nav.items.map((item,i)=>`<div class="nav-item-row"><label class="nav-item-label">Item ${i+1}<input type="text" data-nav-label="${i}" value="${escAttr(item.label)}"></label><label><span>Show</span><input type="checkbox" data-nav-show="${i}" ${item.visible?'checked':''}></label></div>`).join('');
 $('#tg').innerHTML=Object.keys(LB).map(k=>`<label><input type="checkbox" data-s="${k}" checked> ${LB[k]}</label>`).join('');
 $('#tg').onchange=e=>{S.show[e.target.dataset.s]=e.target.checked?1:0;render()};
 $('#gp').onclick=()=>{S.g='primary';S.v=0;setTs('hero');$('#gp').setAttribute('aria-pressed',true);$('#gs').setAttribute('aria-pressed',false);fillVs();render()};
@@ -370,6 +392,8 @@ $('#nav-logo-upload').onchange=e=>{
 $('#nav-logo-visible').onchange=e=>{S.nav.showLogo=e.target.checked;render()};
 $('#nav-brand-label').oninput=e=>{S.nav.brandLabel=e.target.value;render()};
 $('#nav-brand-visible').onchange=e=>{S.nav.showBrandLabel=e.target.checked;render()};
+$('#nav-primary-visible').onchange=e=>{S.nav.showPrimary=e.target.checked;render()};
+$('#nav-secondary-visible').onchange=e=>{S.nav.showSecondary=e.target.checked;render()};
 $('#nav-items-editor').oninput=e=>{
   const i=Number(e.target.dataset.navLabel);
   if(Number.isInteger(i)&&S.nav.items[i]){S.nav.items[i].label=e.target.value;render()}
